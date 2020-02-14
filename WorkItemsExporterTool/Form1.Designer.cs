@@ -77,18 +77,17 @@
             // 
             // tfsUrlTextBox
             // 
-            this.tfsUrlTextBox.Location = new System.Drawing.Point(33, 27);
+            this.tfsUrlTextBox.Location = new System.Drawing.Point(30, 179);
             this.tfsUrlTextBox.Name = "tfsUrlTextBox";
             this.tfsUrlTextBox.Size = new System.Drawing.Size(540, 20);
             this.tfsUrlTextBox.TabIndex = 1;
-            this.tfsUrlTextBox.Text = "http://tfs:8080/tfs/";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 8);
+            this.label3.Location = new System.Drawing.Point(33, 160);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 13);
+            this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 100;
             this.label3.Text = "Team Foundation URL";
             // 
@@ -109,7 +108,7 @@
             this.radioButton1.Enabled = false;
             this.radioButton1.Location = new System.Drawing.Point(17, 16);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(89, 17);
+            this.radioButton1.Size = new System.Drawing.Size(88, 17);
             this.radioButton1.TabIndex = 5;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Work Item ID";
@@ -122,7 +121,7 @@
             this.radioButton2.Enabled = false;
             this.radioButton2.Location = new System.Drawing.Point(17, 70);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(104, 17);
+            this.radioButton2.Size = new System.Drawing.Size(100, 17);
             this.radioButton2.TabIndex = 7;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "OR, enter query";
@@ -181,7 +180,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(25, 298);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 13);
+            this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 100;
             this.label7.Text = "Query";
             // 
@@ -190,7 +189,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(25, 259);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 13);
+            this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 100;
             this.label6.Text = "Folder";
             // 
@@ -199,7 +198,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(25, 218);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 100;
             this.label4.Text = "Project";
             // 
@@ -209,7 +208,7 @@
             this.savedQueryRadioButton.Enabled = false;
             this.savedQueryRadioButton.Location = new System.Drawing.Point(17, 179);
             this.savedQueryRadioButton.Name = "savedQueryRadioButton";
-            this.savedQueryRadioButton.Size = new System.Drawing.Size(107, 17);
+            this.savedQueryRadioButton.Size = new System.Drawing.Size(105, 17);
             this.savedQueryRadioButton.TabIndex = 9;
             this.savedQueryRadioButton.TabStop = true;
             this.savedQueryRadioButton.Text = "OR, saved query";
@@ -224,10 +223,11 @@
             this.panel1.Controls.Add(this.passwordTextBox);
             this.panel1.Controls.Add(this.userTextBox);
             this.panel1.Controls.Add(this.domainTextBox);
-            this.panel1.Location = new System.Drawing.Point(12, 64);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(574, 132);
             this.panel1.TabIndex = 100;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label5
             // 
@@ -243,7 +243,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(24, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 100;
             this.label2.Text = "Domain";
             // 
@@ -252,7 +252,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(21, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(275, 13);
+            this.label1.Size = new System.Drawing.Size(266, 13);
             this.label1.TabIndex = 100;
             this.label1.Text = "Domain information (required to download attachments)";
             // 
@@ -277,7 +277,6 @@
             this.domainTextBox.Name = "domainTextBox";
             this.domainTextBox.Size = new System.Drawing.Size(466, 20);
             this.domainTextBox.TabIndex = 2;
-            this.domainTextBox.Text = "sedco-online";
             // 
             // Form1
             // 

@@ -10,6 +10,7 @@ using System.Net;
 using Sedco.Products.TFSHelpers.WorkItemsDefinitions;
 using Sedco.Products.TFSHelpers.WorkItemsDefaultExtractor;
 using Sedco.Products.TFSHelpers.WorkItemsExporterTool;
+using Microsoft.TeamFoundation.Client;
 
 namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
 {
@@ -35,8 +36,10 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
                 {
                     try
                     {
-                        NetworkCredential credentials = new NetworkCredential(userTextBox.Text.Trim(), passwordTextBox.Text, domainTextBox.Text);
-                        HTMLPagesCreationHelper.SaveItemsSummary(itemList, dialog.SelectedPath, Environment.CurrentDirectory, credentials);
+
+                        NetworkCredential cred = new NetworkCredential(userTextBox.Text.Trim(), passwordTextBox.Text, domainTextBox.Text);
+                        extractor.Credentials = cred;
+                        HTMLPagesCreationHelper.SaveItemsSummary(itemList, dialog.SelectedPath, Environment.CurrentDirectory, cred);
                         MessageBox.Show("Saving completed");
                     }
                     catch (Exception ex)
@@ -300,6 +303,8 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
             {
                 try
                 {
+                    NetworkCredential cred = new NetworkCredential(userTextBox.Text.Trim(), passwordTextBox.Text, domainTextBox.Text);
+                    extractor.Credentials = cred;
                     extractor.TfsURL = tfsUrlTextBox.Text;
                     isTfsUrlChanged = false;
                 }
@@ -319,6 +324,11 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
         private void foldersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedFolderChanged = true;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
+using Microsoft.VisualStudio.Services.Common;
 
 namespace Sedco.Products.TFSHelpers.WorkItemsDefinitions
 {
@@ -10,6 +12,7 @@ namespace Sedco.Products.TFSHelpers.WorkItemsDefinitions
         /// gets or sets the TFS url
         /// </summary>
         string TfsURL { get; set; }
+        NetworkCredential Credentials { get; set; }
 
         /// <summary>
         /// gets a work item by id
