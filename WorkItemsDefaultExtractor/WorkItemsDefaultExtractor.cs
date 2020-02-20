@@ -90,6 +90,7 @@ namespace Sedco.Products.TFSHelpers.WorkItemsDefaultExtractor
                 foreach (WorkItem workItem in workItemCollection)
                 {
                     result.Add(new DefaultWorkItemSummary(workItem));
+                    break;
                 }
 
                 return result;
@@ -106,22 +107,6 @@ namespace Sedco.Products.TFSHelpers.WorkItemsDefaultExtractor
             try
             {
                 List<IWorkItemSummary> result = new List<IWorkItemSummary>();
-
-                Query query = new Query(
-                     store,
-                     "select * from issue where System.TeamProject = @project",
-                     new Dictionary<string, string>() { { "project", projectName } }
-                );
-
-                var workItemCollection = query.RunQuery();
-                var count = 0;
-                foreach (WorkItem workItem in workItemCollection)
-                {
-                    result.Add(new DefaultWorkItemSummary(workItem));
-                    if (count > 10) break;
-                    count++;
-                }
-                return result;
 
                 QueryHierarchy queryRoot = store.Projects[projectName].QueryHierarchy;
                 QueryFolder folder = (QueryFolder)queryRoot[queryFolderName];
