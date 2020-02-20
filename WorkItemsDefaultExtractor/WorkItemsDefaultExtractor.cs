@@ -90,7 +90,6 @@ namespace Sedco.Products.TFSHelpers.WorkItemsDefaultExtractor
                 foreach (WorkItem workItem in workItemCollection)
                 {
                     result.Add(new DefaultWorkItemSummary(workItem));
-                    break;
                 }
 
                 return result;

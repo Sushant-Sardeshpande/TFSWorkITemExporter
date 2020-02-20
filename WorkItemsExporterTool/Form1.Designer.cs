@@ -50,6 +50,8 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.userTextBox = new System.Windows.Forms.TextBox();
             this.domainTextBox = new System.Windows.Forms.TextBox();
+            this.browse = new System.Windows.Forms.Button();
+            this.filePath = new System.Windows.Forms.TextBox();
             this.mainPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -94,7 +96,7 @@
             // exportButton
             // 
             this.exportButton.Enabled = false;
-            this.exportButton.Location = new System.Drawing.Point(204, 561);
+            this.exportButton.Location = new System.Drawing.Point(383, 560);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(203, 37);
             this.exportButton.TabIndex = 9;
@@ -278,11 +280,30 @@
             this.domainTextBox.Size = new System.Drawing.Size(466, 20);
             this.domainTextBox.TabIndex = 2;
             // 
+            // browse
+            // 
+            this.browse.Location = new System.Drawing.Point(12, 564);
+            this.browse.Name = "browse";
+            this.browse.Size = new System.Drawing.Size(81, 29);
+            this.browse.TabIndex = 101;
+            this.browse.Text = "Browse";
+            this.browse.UseVisualStyleBackColor = true;
+            this.browse.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // filePath
+            // 
+            this.filePath.Location = new System.Drawing.Point(99, 569);
+            this.filePath.Name = "filePath";
+            this.filePath.Size = new System.Drawing.Size(257, 20);
+            this.filePath.TabIndex = 102;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(607, 609);
+            this.Controls.Add(this.filePath);
+            this.Controls.Add(this.browse);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.exportButton);
@@ -327,7 +348,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RadioButton savedQueryRadioButton;
-
+        private System.Windows.Forms.Button browse;
+        private System.Windows.Forms.TextBox filePath;
     }
 }
 

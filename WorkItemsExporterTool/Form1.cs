@@ -11,6 +11,7 @@ using Sedco.Products.TFSHelpers.WorkItemsDefinitions;
 using Sedco.Products.TFSHelpers.WorkItemsDefaultExtractor;
 using Sedco.Products.TFSHelpers.WorkItemsExporterTool;
 using Microsoft.TeamFoundation.Client;
+using System.Configuration;
 
 namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
 {
@@ -30,22 +31,17 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
         {
             if (itemList != null && itemList.Count() > 0)
             {
-                FolderBrowserDialog dialog = new FolderBrowserDialog();
-                dialog.Description = "Choose where to save work items summary";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                var downloadPath = filePath.Text;
+                if (!string.IsNullOrEmpty(downloadPath))
                 {
-                    try
-                    {
-
-                        NetworkCredential cred = new NetworkCredential(userTextBox.Text.Trim(), passwordTextBox.Text, domainTextBox.Text);
-                        extractor.Credentials = cred;
-                        HTMLPagesCreationHelper.SaveItemsSummary(itemList, dialog.SelectedPath, Environment.CurrentDirectory, cred);
-                        MessageBox.Show("Saving completed");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Something went wrong!. Here is the exception details: " + ex.Message);
-                    }
+                    NetworkCredential cred = new NetworkCredential(userTextBox.Text.Trim(), passwordTextBox.Text, domainTextBox.Text);
+                    extractor.Credentials = cred;
+                    HTMLPagesCreationHelper.SaveItemsSummary(itemList, downloadPath, Environment.CurrentDirectory, cred);
+                    MessageBox.Show("Saving completed");
+                }
+                else
+                {
+                    MessageBox.Show("Download path not provided");
                 }
             }
             else
@@ -99,16 +95,16 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
         private void exportButton_Click(object sender, EventArgs e)
         {
             UpdateTFSExtractorURL();
-            
+
             if (radioButton1.Checked)
             {
-                IWorkItemSummary item = null; 
+                IWorkItemSummary item = null;
 
                 try
                 {
                     item = extractor.GetWorkItemById(Convert.ToInt32(itemIdTextBox.Text.Trim()));
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     string message = ex.Message;
                     if (ex.InnerException != null)
@@ -120,18 +116,18 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
                 }
 
                 List<IWorkItemSummary> list = new List<IWorkItemSummary>();
-                
+
                 if (item != null)
                 {
                     list.Add(item);
                 }
-                
+
                 ExportList(list);
             }
             else if ((radioButton2.Checked))
             {
                 IEnumerable<IWorkItemSummary> itemList = null;
-                
+
                 try
                 {
                     itemList = extractor.GetWorkItemsByQueryText(queryTextBox.Text);
@@ -228,7 +224,7 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
                 FillQueryComboBox();
                 selectedFolderChanged = false;
             }
-            
+
         }
 
         void foldersComboBox_Click(object sender, EventArgs e)
@@ -330,15 +326,33 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "Choose where to save work items summary";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var selectedPath = dialog.SelectedPath;
+                    filePath.Text = selectedPath;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Something went wrong!. Here is the exception details: " + ex.Message);
+                }
+            }
+        }
     }
 
-    class Item 
+    class Item
     {
-          public string Name {get; set;}
+        public string Name { get; set; }
 
-          public Item(string name) 
-          {
-              Name = name;
-          }
+        public Item(string name)
+        {
+            Name = name;
+        }
     }
 }
